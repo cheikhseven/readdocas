@@ -1,9 +1,15 @@
+# .readthedocs.yaml
 version: 2
 
-documentation_type: none
-
+# We are not using a traditional documentation tool
 build:
+  os: ubuntu-22.04
+  tools:
+    python: "3.10"
   jobs:
-    html:
-      - mkdir -p _readthedocs/html/news
-      - cp -r news/* _readthedocs/html/news/
+    post_build:
+      - mkdir -p _build/news
+      - cp -r _static/* _build/news/
+
+# We don't need to build any specific documentation format
+formats: []
