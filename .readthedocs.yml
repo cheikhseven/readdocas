@@ -1,25 +1,15 @@
-# .readthedocs.yaml - The Final Correct Version
-# Date: June 26, 2025
+# .readthedocs.yaml - The Final Correct Version for June 2025
+# This version uses the new $READTHEDOCS_OUTPUT variable as required.
 
-# Required version for the configuration file
 version: 2
 
-# This section defines the build environment and commands
 build:
-  # Use a standard, modern operating system
   os: ubuntu-22.04
-
-  # We don't need any special tools, but defining the OS is good practice.
   tools: {}
-
-  # These are the only commands that will run.
-  # This tells Read the Docs to ignore everything else and just follow these steps.
   commands:
-    # 1. Create the output directory. Read the Docs requires this specific path.
-    - mkdir -p _build/html
+    # 1. إنشاء مجلد المخرجات باستخدام المتغير الرسمي من المنصة
+    # هذا هو التعديل المطلوب لحل الخطأ الجديد
+    - mkdir -p ${READTHEDOCS_OUTPUT}/html
 
-    # 2. Copy the contents of your 'news' folder into the output directory.
-    - cp -r news/* _build/html/
-
-# By COMPLETELY OMITTING the 'sphinx' and 'mkdocs' keys,
-# we avoid the error "You can not have sphinx and mkdocs keys at the same time."
+    # 2. نسخ محتويات مجلد 'news' إلى مجلد المخرجات الصحيح
+    - cp -r news/* ${READTHEDOCS_OUTPUT}/html/
