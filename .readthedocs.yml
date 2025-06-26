@@ -1,12 +1,28 @@
+# الإصدار 2 من ملف إعدادات Read the Docs (مطلوب)
 version: 2
 
+# نحن لا نستخدم Sphinx، لذا لا نحتاج هذا القسم. تركه فارغًا أفضل من حذفه
+sphinx:
+
+# نحن لا نستخدم MkDocs
+mkdocs:
+
+# لسنا بحاجة لبناء صيغ أخرى للملفات
+formats: []
+
+# قسم البناء هو أهم جزء
 build:
+  # تحديد نظام التشغيل والأدوات التي ستعمل عليها الأوامر
   os: ubuntu-22.04
   tools:
     python: "3.11"
-  jobs:
-    post_build:
-      - mkdir -p _build/html
-      - cp -r news/* _build/html/
+  
+  # الأوامر التي سيتم تنفيذها بالترتيب
+  commands:
+    # 1. إنشاء المجلد الذي سيعرض منه الموقع.
+    #    Read the Docs يبحث دائمًا عن مجلد _build/html
+    - mkdir -p _build/html
 
-formats: []
+    # 2. نسخ جميع الملفات والمجلدات من مجلد 'news'
+    #    إلى مجلد العرض الذي أنشأناه للتو.
+    - cp -r news/* _build/html/
