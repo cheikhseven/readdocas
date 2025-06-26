@@ -5,5 +5,11 @@ build:
   tools:
     python: "3.10"
 
-sphinx:
-  configuration: docs/conf.py
+# نستخدم بناء مخصص لعرض HTML فقط
+documentation_type: none
+
+build:
+  jobs:
+    html:
+      - mkdir -p _readthedocs/html
+      - cp -r news/* _readthedocs/html/
