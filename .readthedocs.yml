@@ -1,28 +1,25 @@
-# الإصدار 2 من ملف إعدادات Read the Docs (مطلوب)
+# .readthedocs.yaml - The Final Correct Version
+# Date: June 26, 2025
+
+# Required version for the configuration file
 version: 2
 
-# نحن لا نستخدم Sphinx، لذا لا نحتاج هذا القسم. تركه فارغًا أفضل من حذفه
-sphinx:
-
-# نحن لا نستخدم MkDocs
-mkdocs:
-
-# لسنا بحاجة لبناء صيغ أخرى للملفات
-formats: []
-
-# قسم البناء هو أهم جزء
+# This section defines the build environment and commands
 build:
-  # تحديد نظام التشغيل والأدوات التي ستعمل عليها الأوامر
+  # Use a standard, modern operating system
   os: ubuntu-22.04
-  tools:
-    python: "3.11"
-  
-  # الأوامر التي سيتم تنفيذها بالترتيب
+
+  # We don't need any special tools, but defining the OS is good practice.
+  tools: {}
+
+  # These are the only commands that will run.
+  # This tells Read the Docs to ignore everything else and just follow these steps.
   commands:
-    # 1. إنشاء المجلد الذي سيعرض منه الموقع.
-    #    Read the Docs يبحث دائمًا عن مجلد _build/html
+    # 1. Create the output directory. Read the Docs requires this specific path.
     - mkdir -p _build/html
 
-    # 2. نسخ جميع الملفات والمجلدات من مجلد 'news'
-    #    إلى مجلد العرض الذي أنشأناه للتو.
+    # 2. Copy the contents of your 'news' folder into the output directory.
     - cp -r news/* _build/html/
+
+# By COMPLETELY OMITTING the 'sphinx' and 'mkdocs' keys,
+# we avoid the error "You can not have sphinx and mkdocs keys at the same time."
