@@ -1,15 +1,28 @@
 # .readthedocs.yaml
+# Last Updated: 2025-06-26
 version: 2
 
-# We are not using a traditional documentation tool
+# Set the OS and tools to build your project
 build:
   os: ubuntu-22.04
   tools:
-    python: "3.10"
+    python: "3.11"
+  # Use build.jobs to define custom commands.
+  # This approach gives you full control and avoids implicit Sphinx builds.
   jobs:
     post_build:
+      # Create the directory that Read the Docs expects for the HTML output.
+      # The `_build/html` path is the standard.
       - mkdir -p _build/news
-      - cp -r _static/* _build/news/
+      # Copy your static HTML files into that directory.
+      # IMPORTANT: Change 'static/' to the name of the directory containing your HTML files.
+      - cp -r static/* _build/news/
 
-# We don't need to build any specific documentation format
+# By explicitly setting the sphinx and mkdocs keys to null,
+# we are clearly telling Read the Docs that this is not a Sphinx or MkDocs project.
+# This is the key to preventing the "Missing Sphinx configuration key" error.
+sphinx: null
+mkdocs: null
+
+# Since we are not building standard documentation formats, this can be empty.
 formats: []
