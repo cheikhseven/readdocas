@@ -5,18 +5,5 @@ build:
   tools:
     python: "3.10"
 
-formats: []
-
-# لا نستخدم sphinx أو mkdocs، بل نبني ملفات HTML يدوياً
-build:
-  jobs:
-    pre_build:
-      - mkdir -p _readthedocs/html
-      - cp -r news/* _readthedocs/html/
-
-  jobs:
-    html:
-      - echo "No Sphinx or MkDocs used — raw HTML only"
-
-# نخبر Read the Docs أن نعرض الملفات من هنا
-documentation_type: none
+sphinx:
+  configuration: docs/conf.py
